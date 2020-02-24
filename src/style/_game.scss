@@ -1,0 +1,141 @@
+/*=====================[Game Page]=====================*/
+body#gamePage {
+    background-color: black;
+    min-height: 100%;
+
+    #gameWrapper {
+        background-image: url("../media/images/gameBackground.jpg");
+        @extend .backgroundImagePreset;
+        height: 100%;
+    }//gameWrapper
+
+    #gameHeading {
+        margin-bottom: $gMargin;
+        width: 100%;
+        text-align: center;
+        position: relative;
+
+        img { //game og thrones logo
+            margin: 0 auto;
+            max-width: 600px;
+            width: 100%;
+        }//img
+        h1 {
+            margin: 0 auto;
+        }
+        #backButton {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            text-decoration: none;
+            margin: 0;
+        }
+    }//gameHeading
+
+    #gameArea {
+        width: 1320px;
+        height: 770px;
+        position: relative;
+        @include dropShadow();
+        background-image: url("../media/images/backgroundSea.jpg");
+        background-position: center;
+        background-size: contain;
+
+        canvas { // both canvases for the game
+            position: absolute;
+            left: 0;
+            top: 0;
+            @include borderStyle(10px);
+        }//canvas
+    }//#gameArea
+
+    #gameContent {
+        @media only screen {
+            @media (min-width: $gameBreak) {
+                margin-top: 142px;
+            }
+            @media (max-width: $gameBreak) {
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+                padding: 10px;
+
+                & > * {
+                    margin: 0 20px;
+                }//& > *
+
+                #gameInfoWrapper {
+                    display: flex;
+                    flex-direction: column-reverse;
+                }//#gameInfoWrapper
+            }//max-width $gameBreak
+
+            @media (max-width: 620px) {
+                flex-direction: column-reverse;
+
+                & > * {
+                    margin: 0 auto;
+                }
+            }
+
+            @media (max-width: $mobile) {
+                #playerInfo {
+                    margin: 0 20px;
+                }
+            }
+        }//@media
+
+
+        #playerInfo {
+
+            .charCard {
+                margin: 0;
+                @include borderStyle(10px);
+            }//.charCard
+
+            .selectMark {
+                @extend [class^="selectMark player"];
+            }//.selectMark
+        }//#playerInfo
+
+        #gameInfoWrapper {
+
+            #gameInfo {
+                background-color: $blackTBackground2;
+                @include dropShadow();
+                @include borderStyle();
+                margin: 20px 0 20px;
+                overflow: auto;
+                padding: 10px;
+                min-height: 180px;
+                height: 120px;
+                max-width: 318px;
+                font-size: 25px;
+                font-weight: normal;
+                text-align: center;
+                .events {
+                    padding: 10px 0;
+                }
+            }//gameInfo
+
+        }
+
+        #diceWrapper {
+            text-align: center;
+
+            img { //image of dice
+                margin: 0 auto;
+                height: 88px;
+            }
+
+            #rollButton {
+                transition-duration: 0.5s;
+                transition: all;
+                font-size: 30px;
+                color: white;
+                padding: 15px 30px;
+                border: none;
+            }//rollButton
+        }//diceWrapper
+    }//gameContent
+}//body#gamepage

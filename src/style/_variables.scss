@@ -1,0 +1,122 @@
+/*=======================[Variables]=======================*/
+//colors
+$textColorWhite: #ffffff;
+$textColorBlack: #111111;
+$myWhite: #d6d6d6;
+
+//border colors
+$borderColor: $myWhite;
+$borderColorInactive: #b2b2b2;
+
+//ranking colors
+$gold: #c29d03;
+$silver: #b2b1ab;
+$bronze: #725500;
+
+
+//backgroundColors
+$whiteTBackground1: rgba(222, 222, 222, 0.8);
+$whiteTBackground2: rgba(222, 222, 222, 0.5);
+$grayTBackground1: rgba(150, 150, 150, 0.8);
+$blackTBackground1: rgba(22,22,22,0.8);
+$blackTBackground2: rgba(22, 22, 22, 0.5);
+
+
+//grid
+$mobile: 500px;
+$tablet: 920px;
+$desktop: 2560px;
+$gameBreak: 1280px;
+
+//margins
+$gMargin: 15px;
+
+//footer
+$footerH: 0;
+
+
+/*=======================[Mixin's]=======================*/
+//headings sizes
+@mixin headingSizes($modifier:1) {
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: 12px + 6px * (5 - $i) * $modifier;
+    }
+  }
+}
+
+@mixin borderStyle($width:4px, $color:$borderColor) {
+  border: $width groove $color
+}
+
+@mixin dropShadow($x:7px, $y:7px, $s:10px) {
+  box-shadow: $x $y $s rgba(0,0,0,0.75);
+}
+
+@mixin hoverScale($scale:1.1, $time:0.1s, $translate:false) {
+  @if($translate) {
+    transform: translate(-50%,-50%) scale($scale);
+  } @else {
+    transform: scale($scale);
+  }
+  transition-duration: $time;
+}
+
+/*=======================[Presets]=======================*/
+
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+.button {
+  padding: 5px 40px;
+  color: $textColorWhite;
+  margin: 10px;
+  @include borderStyle();
+  @include dropShadow(4px, 4px, 5px);
+
+  &.active {
+    background-color: $blackTBackground2;
+    transform: scale(1.15);
+    @include dropShadow(5px, 5px, 7px);
+    //@include borderStyle(8px);
+  }
+  &:hover:not(.active) {
+    transform: scale(1.05);
+    transition-duration: 10ms;
+  }
+}//.button
+.deactivated {
+  opacity: 70%;
+  border-color: $borderColorInactive;
+  transform: none;
+  box-shadow: none;
+  &:hover {
+    transform: none !important;
+  }
+}
+
+.backgroundImagePreset {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+.noFlex {
+  display: inherit;
+  flex-direction: unset;
+}
+.hidden {
+  display: none;
+}

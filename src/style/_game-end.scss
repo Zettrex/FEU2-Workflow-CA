@@ -1,0 +1,230 @@
+/*=====================[Result Page]=====================*/
+body#gameEndPage {
+    background-color: black;
+    @extend .backgroundImagePreset;
+    background-image: url("../media/images/endBackgroundBack.jpg");
+    position: relative;
+
+    #pageWrapper {
+        @extend .flexCol;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        width: 100%;
+        min-height: 100%;
+        @extend .backgroundImagePreset;
+        background-image: url("../media/images/endBackgroundFront.png");
+        #gameLogo {
+            max-width: 800px;
+            margin: 50px auto 0;
+            img {
+                width: 100%;
+            }//img
+        }//gameLogo
+
+        #winnerInfo {
+            margin: 5% 0;
+            width: 100%;
+            padding: 20px;
+
+            #winnerText {
+                max-width: 1000px;
+                font-size: 60px;
+                text-align: center;
+                margin: auto;
+            }//winnerText
+            @media only screen {
+                @media (min-width: 0) and (max-width: $tablet) {
+                    margin-top: 20%;
+                    #winnerText {
+                        font-size: 40px;
+                    }//#winnerText
+                }//max-width $tablet
+                @media only screen and (max-width: 330px) {
+                    #winnerText {
+                        font-size: 32px;
+                    }
+                }
+            }//@media
+        }//winnerInfo
+
+        #buttonsWrapper {
+            text-align: center;
+            width: 250px;
+            margin: auto;
+
+            #moreInfo {
+                opacity: 0.9;
+            }//#moreInfo
+
+            #playAgain {
+                font-size: 20px;
+            }//#playAgain
+
+        }//playAgain Button
+
+        #moreInfoWrapper {
+            display: block;
+            @include borderStyle(10px);
+            width: 1100px;
+            min-height: 700px;
+            background-color: $blackTBackground1;
+            z-index: 5;
+            position: absolute;
+            transform: translate(-50%, 0);
+            left: 50%;
+            top: 20%;
+            @media only screen {
+                @media (min-width: 0) and (max-width: $tablet) {
+                    margin-bottom: 50px;
+                }//max-width $tablet
+                @media (max-width: 1100px) {
+                    width: 95%;
+                }//max-width: 1100px
+            }//@media
+
+            h2 {
+                margin-top: 20px;
+                text-align: center;
+            }//h2
+
+            #roundCounter {
+                text-align: center;
+                font-size: 30px;
+            }//#roundCounter
+
+            #moreInfoWindow {
+                margin-top: 30px;
+                display: flex;
+                @media only screen and (max-width: $tablet) {
+                    padding-bottom: 125px;
+                }//@media
+
+                .playerCard {
+                    margin: auto;
+                    @media only screen and (max-width: $tablet) {
+                        margin-bottom: 50px;
+                    }//@media
+
+                    .charCard {
+                        @media only screen and (max-width: $tablet) {
+                            width: 95%;
+                            height: 500px;
+                            margin: auto;
+                        }//@media
+                    }//.charCard
+
+                    h3{
+                        display: block;
+                        text-align: center;
+                    }//h3
+                    .charImage {
+                        width: 100%;
+                        height: 100%;
+                        @extend .backgroundImagePreset;
+                    }//.charImage
+                    .readMoreWindow {
+                        padding: 15px;
+                        h3 {
+                            margin-bottom: 20px;
+                            padding: 0 40px;
+                        }//h3
+                        .readMoreContent {
+                            padding: 10px 0;
+                            span {
+                                margin-left: 5px;
+                            }//span
+                        }//readmoreContent
+                    }//readMoreWindow
+
+                    //giving ranking color on border for players
+                    &:nth-of-type(1) {
+                        .charCard {
+                            border-color: $gold;
+                        }//.charCard
+                    }//:nth-of-type(1)
+
+                    &:nth-of-type(2) {
+                        .charCard {
+                            border-color: $silver;
+                        }//.charCard
+                    }//:nth-of-type(2)
+
+                    &:nth-of-type(3) {
+                        .charCard {
+                            border-color: $bronze;
+                        }//.charCard
+                    }//:nth-of-type(3) ---- creating ranking colors
+                }//playerCard
+
+                &:not(.twoPlayers) {
+                    @media only screen {
+                        @media (min-width: $mobile) and (max-width: $desktop) {
+                            .playerCard {
+                                display: flex;
+                                flex-direction: column;
+                                margin: auto auto 30px;
+                                &:nth-of-type(1) {
+                                    order: 2;
+                                    .charCard {
+                                        width: 318px;
+                                        height: 393px;
+                                    }//.charCard
+                                }//:nth-of-type(1)
+
+                                &:nth-of-type(2) {
+                                    order: 1;
+                                    .charCard {
+                                        h2 {
+                                            transform: scale(0.9);
+                                        }
+                                        width: 254px;
+                                        height: 314px;
+                                    }//.charCard
+                                }//.nth-of-type(2)
+
+                                &:nth-of-type(3) {
+                                    margin-top: auto;
+                                    order: 3;
+                                    .charCard {
+                                        h2 {
+                                            transform: scale(0.9);
+                                        }
+                                        width: 254px;
+                                        height: 314px;
+                                    }//.charCard
+                                }//:nth-of-type(3)
+                            }//.playerCard
+                        }//tablet to mobile
+                        @media (min-width: $mobile) and (max-width: $tablet) {
+                            .playerCard {
+                                order: unset !important;
+                            }
+                        }
+                    }//mediaQuery
+                }//&:not(.twoPlayers)
+            }//moreInfo
+            #infoCloseButton {
+                font-size: 25px;
+                padding: 7px 70px;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                &:hover {
+                    @include hoverScale($translate:true)
+                }//:hover
+            }//#infoCloseButton
+            &.hidden {
+                display: none;
+            }//.hidden
+        }//moreInfoWrapper
+    }//pageWrapper
+    #backgroundSmoke {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}//body#game-end

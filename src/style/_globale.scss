@@ -1,0 +1,213 @@
+/*=====================[Global Rules]=====================*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    max-width: $desktop;
+    margin: 0 auto;
+
+    body {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding-bottom: $footerH;
+        min-height: 100%;
+        color: $textColorBlack;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: bold;
+
+
+        h1,h2,h3,h4,h5 {
+            font-family: 'Cinzel', serif;
+        }
+        @include headingSizes;
+
+        @media only screen and (max-width: $mobile) {
+            @include headingSizes(0.75)
+        }//@media max-width $mobile
+
+        .gameHeading, .charCard .content {
+            text-align: center;
+        }//.gameHeading, .charCard .content
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            height: $footerH;
+            width: 100%;
+        }//footer
+    }//body
+}//html
+
+
+
+//---------[Page Style]---------//
+.charCard {
+    position: relative;
+    width: 318px;
+    height: 393px;
+    @include borderStyle();
+    @include dropShadow();
+    @extend .backgroundImagePreset;
+    &.readMoreActive {
+        .infoButton {
+            display: none;
+        }//.infoButton
+
+        .readMoreWindow {
+            display: block;
+
+            .infoButton {
+                display: block;
+            }//.infoButton
+
+            .allegianceWrapper {
+                position: absolute;
+                top: 60px;
+                right: 10px;
+                text-align: center;
+                .allegianceContainer:hover {
+                    .tooltip {
+                        display: block;
+                    }//.tooltip
+                }//:hover
+
+                .allegianceContainer {
+                    position: relative;
+                    overflow: visible;
+
+                    .allegianceImg {
+                        display: block;
+                        margin: 10px auto;
+                        width: 40px;
+                        &:hover {
+                            @include hoverScale();
+                        }
+                    }//.allegianceImg
+
+                    .tooltip {
+                        transform: translate(50%, 0);
+                        position: absolute;
+                        padding: 5px;
+                        z-index: 3;
+                        color: $textColorBlack;
+                        background-color: $whiteTBackground1;
+                        display: none;
+                        min-width: 50px;
+                        max-width: 60px;
+                        right: 50%;
+                        top: 80%;
+                        font-size: 10px;
+                    }//tooltip
+                }//allegianceContainer
+            }//allegianceWrapper
+
+            .readMoreContent {
+                padding: 5px 0;
+            }//.readMoreContent
+        }//readMoreWindow
+
+        & > .content {
+            display: none;
+        }// > .content
+    }//&.readMoreActive
+
+    .infoButton {
+        @include borderStyle(2px);
+        @include dropShadow(-2px, -2px, 5px);
+        color: $borderColorInactive;
+        font-size: 25px;
+        position: absolute;
+        border-radius: 20px;
+        display: block;
+        top: 12px;
+        right: 12px;
+        width: 35px;
+        height: 35px;
+        background-color: $blackTBackground1;
+        &:hover {
+            @include hoverScale();
+        }//:hover
+    }//infoButton
+
+    [class^="selectMark player"] {
+        border-right: 4px groove $silver;
+        border-bottom: 4px groove $silver;
+        display: inline-block;
+        width: 28px;
+        text-align: center;
+        font-size: 20px;
+        color: $textColorWhite;
+        background-color: $blackTBackground2;
+        padding: 5px;
+    }//selectMark Player
+
+    .content {
+        display: flex;
+        color: $textColorWhite;
+        background-color: $blackTBackground1;
+        height: 75px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        align-items: center;
+        justify-content: center;
+    }//content
+
+    .readMoreWindow {
+        overflow: auto;
+        display: none;
+        padding: 15px 75px 15px 15px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        color: $textColorBlack;
+        background-color: $grayTBackground1;
+
+        h2 {
+            padding: 5px 0;
+        }//h2
+
+        & > *:not(.allegianceWrapper) {
+            border-bottom: 1px solid $silver;
+            margin-bottom: 15px;
+        }//* not .allegianceWrapper
+
+        .readMoreContent {
+            strong {
+                display: inline-block;
+                font-size: 20px;
+                font-weight: bold;
+                padding-bottom: 3px;
+            }//strong
+
+            .hidden {
+                display: none;
+            }//.hidden
+
+            .showMore {
+                font-style: italic;
+                display: block;
+                cursor: pointer;
+                font-size: 11px;
+                border: none;
+                padding: 7px 0;
+                &:hover {
+                    text-decoration: underline;
+                }//:hover
+            }//showMore
+        }//readMoreContent
+    }//readMoreWindow
+
+    .charSelector {
+        border: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+}//charCard

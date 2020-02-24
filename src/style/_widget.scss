@@ -1,0 +1,46 @@
+/*=======================[Grid]=======================*/
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+[class*="col-"], .column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: stretch;
+  margin: $gMargin;
+  min-height: 1px;
+}
+
+@mixin makeGrid ($cols-in-grid: 12, $prefix: "col-") {
+  @for $i from 1 through $cols-in-grid {
+    .#{$prefix}#{$i} {
+      width: $i / $cols-in-grid * 100% !important;
+    }
+  }
+}
+
+@media only screen {
+  @media (min-width: 0) and (max-width: $mobile) {
+    /*for mobile*/
+    @include makeGrid($prefix:"col-m-");
+  }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    /*for tablet*/
+    @include makeGrid($prefix:"col-t-");
+  }
+  @media (min-width: $tablet) {
+    /*for desktop*/
+    @include makeGrid($prefix:"col-d-");
+  }
+}
+/*----------[end of Grid]-------------*/
